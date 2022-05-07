@@ -35,6 +35,7 @@ class Chord(db.Model):
     def __repr__(self):
         return '<Chord %r>' % self.symbol
 
+
 class ConcreteProgression(db.Model):
     id_concrete_progression = db.Column(db.Integer,     primary_key=True, nullable=False)
     position_concrete_chord = db.Column(db.Integer,     primary_key=True, nullable=False)
@@ -43,22 +44,29 @@ class ConcreteProgression(db.Model):
     id_concrete_chord       = db.Column(db.Integer,     nullable=False)
     position_note_chord     = db.Column(db.Integer,     nullable=False)
     
-
     def __repr__(self):
         return '<ConcreteProgression %r>' % self.id_concrete_scale_grade
-
-
 
 
 ### Entrenamiento
 def train():
     # 1. Importación y procesado de datos
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-    cancer_de_pecho = load_breast_cancer()
-    X = cancer_de_pecho["data"]                                        #Los datos para entrenar las betas de nuestor modelo
-    y = cancer_de_pecho["target"]                                      #Las variables a predecir, si nuestro paciente tiene cancer (1) o no (0)
-    columns = cancer_de_pecho["feature_names"]
+    concreteProgressions = ConcreteProgression.query.all()
+    
+    dataConcreteProgresion = {
+        "idConcreteProgression": {},
+        "idProgressionGrade": {},
+        "idConcreteChord": {},
+        "positionConcreteChord": {},
+        "positionGrade": {},
+    }
 
+    for it in concreteProgressions: {
+        
+    }
+
+    
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
 
@@ -115,6 +123,5 @@ def getAllConcreteProgressions():
     concreteProgressions = ConcreteProgression.query.all()
     for it in concreteProgressions:
         print(it.id_concrete_progression)
-        #Realizar procezamiento de datos
     return "hola";
 
